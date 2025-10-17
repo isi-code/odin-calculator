@@ -5,26 +5,29 @@ const calc = {
     num2 : "",
     result : 0,
     num1Set : false,
+    num2Set : false,
     subtract(){
-        this.operate()
-        this.result = this.num1 - this.num2
+        this.result = this.num1 - this.num2;
+        return this.result
     },
     sum(){
-        this.operate()
-        this.result = this.num1 + this.num2
-        this.result.toFixed(2)
+        this.result = this.num1 + this.num2;
+        return this.result
     },
     multiply(){  
-        this.operate()
-        this.result = this.num1 * this.num2 
+        this.result = this.num1 * this.num2;
+        return this.result
     },
     divide(){
-        this.operate()
-        this.result = this.num1 / this.num2
+        this.result = this.num1 / this.num2;
+        return this.result
     },
-    operate(){
-        this.num1 = this.num1.indexOf('.') === 1 ? parseFloat(this.num1) : parseInt(this.num1);
-        this.num2 = this.num2.indexOf('.') === 1 ? parseFloat(this.num2) : parseInt(this.num2);
+    operate(num1,num2,operator){
+        this.num1 = num1.indexOf('.') === 1 ? parseFloat(num1) : parseInt(num1);
+        this.num2 = num2.indexOf('.') === 1 ? parseFloat(num2) : parseInt(num2);
+        let result = this[operator]();
+        result = Number.isInteger(this.result) ? result : this.result.toFixed(2);
+        display.textContent = `${this.num1} ${this.operatorSign} ${this.num2} = ${result}`;
     },
 }
 
@@ -39,8 +42,8 @@ buttons.addEventListener("click",(e)=>{
                 calc.operatorSign = e.target.value;
             break;
             case "+":
-                calc.operation = "sum"; 
-                calc.operatorSign += e.target.value;
+                calc.operation = "sum";
+                calc.operatorSign = e.target.value;
             break;
             case "*":
                 calc.operation = "multiply";
@@ -53,6 +56,8 @@ buttons.addEventListener("click",(e)=>{
             case "C":
                 calc.num1 = "";
                 calc.num2 = "";
+                calc.result = 0;
+                calc.operation = "";
                 calc.operatorSign = "";
                 display.textContent = "";
             break;
@@ -76,7 +81,9 @@ buttons.addEventListener("click",(e)=>{
                 break;
             case "=":
                 if (calc.num1 !== "" && calc.num2 !== "" && calc.operation !== ""){
-                    calc[calc.operation]()
+                    calc.operate(calc.num1,calc.num2,calc.operation);
+                    calc.operation = "";
+                    calc.operatorSign = "";
                 }
                 break;
             default:
@@ -87,12 +94,10 @@ buttons.addEventListener("click",(e)=>{
                 }
         }
         calc.num1Set = calc.num1 !== "" && calc.operation !== "";
+        calc.num2Set = calc.num1Set && calc.num2 !== "" && calc.operation !== "";
         if (calc.result){ 
-            display.textContent = `${calc.num1} ${calc.operatorSign} ${calc.num2} = ${calc.result}`;
             calc.num1 = calc.result.toString();
             calc.result = 0;
-            calc.operation = "";
-            calc.operatorSign = "";
             calc.num2 = "";
         } else{
             display.textContent = `${calc.num1} ${calc.operatorSign} ${calc.num2}`;
