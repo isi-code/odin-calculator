@@ -17,7 +17,7 @@ body{
     border-radius: 10px;
 }
 
-.display{
+.display-screen{
     padding: 30px;
     background-color:#43D5F8;
     border-radius: 10px;
@@ -43,13 +43,18 @@ body{
     cursor: pointer;
 }
 
-button.calc-keys.equal-sign{
+.operators-container > button:nth-last-child(1){
     color: white;
     background-color: #124888;
 }
 
-button.calc-keys.equal-sign:hover{
+.operators-container > button:nth-last-child(1):hover{
     background-color: #2162b1;
+}
+
+button[value="C"]{
+    color:rgb(216, 30, 30);
+    font-weight: 700;
 }
 
 .btns-num-container{
