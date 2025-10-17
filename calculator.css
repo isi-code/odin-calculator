@@ -21,9 +21,19 @@ body{
 }
 
 .display-screen{
-    padding: 30px;
+    padding: 15px;
     background-color:#43D5F8;
     border-radius: 10px;
+    text-align: right;
+}
+
+#display{
+    padding: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    color: black;
+    font-size: larger;
+    right:1px;
 }
 
 .btns-container{
