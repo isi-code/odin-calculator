@@ -38,18 +38,30 @@ buttons.addEventListener("click",(e)=>{
     if (e.target.tagName === "BUTTON"){        
         switch(e.target.value) {
             case "-":
+                if(calc.num1Set && calc.num2Set && calc.operatorSign !== "") {
+                    calc.operate(calc.num1,calc.num2,calc.operation);
+                }
                 calc.operation = "subtract";
                 calc.operatorSign = e.target.value;
             break;
             case "+":
+                if(calc.num1Set && calc.num2Set && calc.operatorSign !== "") {
+                    calc.operate(calc.num1,calc.num2,calc.operation);
+                }
                 calc.operation = "sum";
                 calc.operatorSign = e.target.value;
             break;
             case "*":
+                if(calc.num1Set && calc.num2Set && calc.operatorSign !== "") {
+                    calc.operate(calc.num1,calc.num2,calc.operation);
+                }
                 calc.operation = "multiply";
                 calc.operatorSign = e.target.value;
             break;
             case "/":
+                if(calc.num1Set && calc.num2Set && calc.operatorSign !== "") {
+                    calc.operate(calc.num1,calc.num2,calc.operation);
+                }
                 calc.operation = "divide";
                 calc.operatorSign = e.target.value;
             break;
