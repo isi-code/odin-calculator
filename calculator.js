@@ -67,9 +67,11 @@ buttons.addEventListener("click",(e)=>{
             case ".":
                 if (!calc.num1Set && calc.num1.indexOf('.') !== 1){
                     calc.num1 += e.target.value;
+                    if (calc.num1 === ".") calc.num1 = '0'+ calc.num1
                 }
                 else if (calc.num2.indexOf('.') !== 1 && calc.operation !== ""){
                     calc.num2 += e.target.value;
+                    if (calc.num2 === ".") calc.num2 = '0'+ calc.num2
                 }
                 break;
             case "=":
@@ -78,13 +80,13 @@ buttons.addEventListener("click",(e)=>{
                 }
                 break;
             default:
-                calc.num1Set = calc.num1 !== "" && calc.operation !== "";
                 if (!calc.num1Set){
                     calc.num1 += e.target.value;
                 } else{
                     calc.num2 += e.target.value;
                 }
         }
+        calc.num1Set = calc.num1 !== "" && calc.operation !== "";
         if (calc.result){ 
             display.textContent = `${calc.num1} ${calc.operatorSign} ${calc.num2} = ${calc.result}`;
             calc.num1 = calc.result.toString();
