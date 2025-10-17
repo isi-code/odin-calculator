@@ -1,3 +1,4 @@
+/* General styling*/
 *{
     padding: 0;
     margin: 0;
@@ -7,7 +8,9 @@
 body{
     background-color: rgb(224, 255, 221);
 }
+/* End general styling*/
 
+/* General layout*/
 .calculator {
     margin:10vh auto;
     width:60%;
@@ -28,7 +31,9 @@ body{
     gap: 10px;
     margin:15px 0px 0px 0px;
 }
+/* End general layout*/
 
+/* button styling*/
 .btns-num-container > button, .operators-container > button  {
     font-size:1.1rem;
     padding: 10px;
@@ -56,7 +61,9 @@ button[value="C"]{
     color:rgb(216, 30, 30);
     font-weight: 700;
 }
+/* end button styling*/
 
+/* calc button layout*/
 .btns-num-container{
     display: flex;
     flex-flow: row wrap;
@@ -78,3 +85,4 @@ button[value="C"]{
 .operators-container > button {
     flex: 1;
 }
+/* end calc button layout*/
