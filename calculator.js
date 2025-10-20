@@ -1,6 +1,8 @@
 const calc = {
     num1 : "",
     num2:"",
+    num1IsSet : false,
+    num2IsSet : false,    
     operation : "",
     subtract(){
         return this.num1 - this.num2;
@@ -29,6 +31,9 @@ const calc = {
         }
         return result
     },
+    display(display,num){
+        return display.textContent = num;
+    }
 }
 
 const buttons = document.querySelector(".btns-container");
@@ -56,21 +61,32 @@ buttons.addEventListener("click",(e)=>{
                 display.textContent = "";
             break;
             case "backspace":
-                    calc.num1 = calc.num1.slice(0,-1);
-                    calc.num2 = calc.num2.slice(0,-1);
+                if (!calc.num1IsSet) calc.num1 = calc.num1.slice(0,-1);
+                if (calc.num2IsSet) calc.num2 = calc.num2.slice(0,-1);
                 break;
             case ".":
-                    calc.num1 += e.target.value;
-                    calc.num1 = '0'+ calc.num1;
-                    calc.num2 += e.target.value;
-                    calc.num2 = '0'+ calc.num2;
+                if (!calc.num1IsSet) calc.num1 += e.target.value;
+                    if (calc.num1 === ".") calc.num1 = '0'+ calc.num1;
+
+                if (!calc.num2IsSet) calc.num2 += e.target.value;
+                    if (calc.num2 === ".") calc.num2 = '0'+ calc.num2;
                 break;
             case "=":
                 break;
             default:
-                    calc.num1 += e.target.value;
-                    calc.num2 += e.target.value;
+                if (!calc.num1IsSet) calc.num1 += e.target.value;
+                if (!calc.num2IsSet) calc.num2 += e.target.value;
         }
     }
+    calc.num1IsSet = calc.num1 !== "" && calc.operation !== "";
+    calc.num2IsSet = calc.num1 !== "" && calc.num2 !== "" &&  calc.operation !== "";
+    
+    if (!calc.num1IsSet || calc.num2 === "") calc.display(display,calc.num1)
+    else if (!calc.num2IsSet) calc.display(display,calc.num2)
+
+    if (num1IsSet && num2IsSet){
+        let result = calc.operate(num1,num2,calc.operate);
+        calc.display(display,result);
     }
-);
+        
+});
