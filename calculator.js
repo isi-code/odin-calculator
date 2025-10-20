@@ -27,7 +27,7 @@ const calc = {
         this.num2 = num2.indexOf('.') === 1 ? parseFloat(num2) : parseInt(num2);
         let result = this[operator]();
         result = Number.isInteger(this.result) ? result : this.result.toFixed(2);
-        display.textContent = `${this.num1} ${this.operatorSign} ${this.num2} = ${result}`;
+        display.textContent = `${result}`;
     },
 }
 
@@ -99,20 +99,29 @@ buttons.addEventListener("click",(e)=>{
                 }
                 break;
             default:
-                if (!calc.num1Set){
+                if (calc.num1Set && calc.operation === ""){
+                    calc.num1 = "";
                     calc.num1 += e.target.value;
-                } else{
+                }
+                else if (!calc.num1Set){
+                    calc.num1 += e.target.value;
+                }
+                else{
                     calc.num2 += e.target.value;
                 }
         }
-        calc.num1Set = calc.num1 !== "" && calc.operation !== "";
-        calc.num2Set = calc.num1Set && calc.num2 !== "" && calc.operation !== "";
-        if (calc.result){ 
+        calc.num1Set = calc.num1 !== "" && calc.operation !== "" || calc.result;
+        calc.num2Set = calc.num1Set && calc.num2 !== "" && calc.operation !== "" && !calc.result;
+        if (calc.result){
             calc.num1 = calc.result.toString();
             calc.result = 0;
             calc.num2 = "";
-        } else{
-            display.textContent = `${calc.num1} ${calc.operatorSign} ${calc.num2}`;
+        } 
+        if(!calc.num1Set){
+            display.textContent = `${calc.num1}`;
+        }
+        if(calc.num2Set){
+            display.textContent = `${calc.num2}`;
         }
     }
 });
