@@ -1,5 +1,8 @@
 # Odin Calculator  project
 
+This a simple calculator made in JavaScript. I used objects, several conditionals
+like switch, `if`, `else if`, `else`, and  ternary conditional statements. I also used
+CSS for styling and DOM manipulation to display the calculator.
 
 ## Requirements
 
