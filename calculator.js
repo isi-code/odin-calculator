@@ -13,15 +13,15 @@ const calc = {
     multiply(num1,num2){  
         return num1 * num2;
     },
-    // divide(num1,num2){
-    //     const division = num1 / num2;
-    //     if (isFinite(division)){
-    //         return division;
-    //     }
-    //     else{
-    //         return "Error"
-    //     }
-    // },
+    divide(num1,num2){
+        const division = num1 / num2;
+        if (isFinite(division) ){
+            return division;
+        }
+        else{
+            return "Error";
+        }
+    },
     operate(num1,num2,operator){
         let result = this[operator](num1,num2);
         if (result !== 0 && result !== "Error"){
@@ -43,26 +43,30 @@ buttons.addEventListener("click",(e)=>{
             case "subtract":
                 if (calc.operation !== "" && calc.num2 !== "" && typeof calc.num2 === "string") {
                     calc.num2 = calc.num2.includes('.') ? parseFloat(calc.num2) : parseInt(calc.num2);
+                } else{
+                calc.operation = e.target.value;                
                 }
-                calc.operation = e.target.value;
             break;
             case "sum":
                 if (calc.operation !== "" && calc.num2 !== "" && typeof calc.num2 === "string") {
                     calc.num2 = calc.num2.includes('.') ? parseFloat(calc.num2) : parseInt(calc.num2);
+                } else{
+                calc.operation = e.target.value;                
                 }
-                calc.operation = e.target.value;
             break;
             case "multiply":
                 if (calc.operation !== "" && calc.num2 !== "" && typeof calc.num2 === "string") {
                     calc.num2 = calc.num2.includes('.') ? parseFloat(calc.num2) : parseInt(calc.num2);
+                } else{
+                calc.operation = e.target.value;                
                 }
-                calc.operation = e.target.value;
             break;
             case "divide":
                 if (calc.operation !== "" && calc.num2 !== "" && typeof calc.num2 === "string") {
                     calc.num2 = calc.num2.includes('.') ? parseFloat(calc.num2) : parseInt(calc.num2);
-                }
+                } else{
                 calc.operation = e.target.value;                
+                }
             break;
             case "C":
                 calc.num1 = "";
