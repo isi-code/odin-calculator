@@ -77,11 +77,13 @@ buttons.addEventListener("click",(e)=>{
                 else if (calc.num1IsSet && calc.num2IsSet) calc.num2 = calc.num2.slice(0,-1);
                 break;
             case ".":
-                if (!calc.num1IsSet) calc.num1 += e.target.value;
+                if (!calc.num1IsSet && !calc.num1.includes(".")) calc.num1 += e.target.value;
                     if (calc.num1 === ".") calc.num1 = '0'+ calc.num1;
 
-                else if (calc.num1IsSet && !calc.num2IsSet) calc.num2 += e.target.value;
+                else if (calc.num1IsSet && !calc.num2IsSet && !calc.num2.includes(".")){
+                    calc.num2 += e.target.value;
                     if (calc.num2 === ".") calc.num2 = '0'+ calc.num2;
+                }
                 break;
             case "=":
                 if (typeof calc.num2 === "string") {
