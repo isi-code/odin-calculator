@@ -45,33 +45,9 @@ const display = document.getElementById("display");
 buttons.addEventListener("click",(e) => {
     if (e.target.tagName === "BUTTON"){    
         switch(e.target.value) {
-            case "subtract":
-                if(calc.operation === "") calc.operation = e.target.value;
-                else{
-                    calc.num2 = calc.num2.includes('.') ? parseFloat(calc.num2) : parseInt(calc.num2);
-                    let result = calc.operate(calc.num1,calc.num2,calc.operation)
-                    calc.operation = e.target.value;
-                    calc.display(display,result)
-                }
-                break;
             case "sum":
-                if(calc.operation === "") calc.operation = e.target.value;
-                else{
-                    calc.num2 = calc.num2.includes('.') ? parseFloat(calc.num2) : parseInt(calc.num2);
-                    let result = calc.operate(calc.num1,calc.num2,calc.operation)
-                    calc.operation = e.target.value;
-                    calc.display(display,result)
-                }
-                break;
+            case "subtract":
             case "multiply":
-                if(calc.operation === "") calc.operation = e.target.value;
-                else{
-                    calc.num2 = calc.num2.includes('.') ? parseFloat(calc.num2) : parseInt(calc.num2);
-                    let result = calc.operate(calc.num1,calc.num2,calc.operation)
-                    calc.operation = e.target.value;
-                    calc.display(display,result)
-                }
-                break;
             case "divide":
                 if(calc.operation === "") calc.operation = e.target.value;
                 else{
